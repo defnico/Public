@@ -1,31 +1,35 @@
+#include "../test/logging.h"
 #include "bst.h"
-#include "gtest/gtest.h"
+#include <cstddef>
+
 #include <iostream>
-#include <string>
 using namespace std;
 
-TEST(BstTest, Basic) {
-  BST bst;
-  EXPECT_EQ(true, bst.empty());
-  bst.insert(8);
-  bst.insert(3);
-  bst.insert(1);
-  bst.insert(6);
-  bst.insert(4);
-  bst.insert(7);
-  bst.insert(10);
-  bst.insert(13);
-  bst.insert(16);
-  EXPECT_EQ(false, bst.find(20));
-  EXPECT_EQ(true, bst.find(8));
-  EXPECT_EQ(true, bst.find(3));
-  EXPECT_EQ(true, bst.find(1));
-  EXPECT_EQ(true, bst.find(6));
-  EXPECT_EQ(true, bst.find(4));
-  EXPECT_EQ(true, bst.find(7));
-  EXPECT_EQ(true, bst.find(10));
-  EXPECT_EQ(true, bst.find(13));
-  EXPECT_EQ(true, bst.find(16));
-  EXPECT_EQ(false, bst.find(22));
-  bst.print();
+int main() {
+  BEGIN_TESTS();
+
+  // BST<string> bst;
+  // bst.insert("car");
+  // bst.insert("ford");
+  // bst.insert("gmc");
+  // cout << bst.dot() << endl;
+
+  BST<int> bst_num;
+  bst_num.insert(50);
+  cout << bst_num.dot() << endl;
+  bst_num.insert(20);
+  cout << bst_num.dot() << endl;
+  bst_num.insert(60);
+  cout << bst_num.dot() << endl;
+  bst_num.insert(10);
+  cout << bst_num.dot() << endl;
+  bst_num.insert(30);
+  cout << bst_num.dot() << endl;
+  bst_num.insert(25);
+  cout << bst_num.dot() << endl;
+  CHECK_EQ(true, bst_num.find(50));
+  CHECK_EQ(false, bst_num.find(55));
+  bst_num.remove(50);
+  bst_num.remove(60);
+  cout << bst_num.dot() << endl;
 }
